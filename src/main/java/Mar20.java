@@ -1,6 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.util.Arrays;
 
 public class Mar20 {
     public static void main(String[] args){
@@ -92,7 +93,7 @@ class Card extends WindowAdapter implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == loginButton) {
             String username = usernameField.getText();
-            String password = passwordField.getText();
+            String password = Arrays.toString(passwordField.getPassword());
 
             if (username.equals("admin") && password.equals("123")) {
                 usernameField.setText("");
