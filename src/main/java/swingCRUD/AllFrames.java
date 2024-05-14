@@ -18,7 +18,7 @@ public class AllFrames implements ActionListener {
     JTable dataTable;
     DataBase dataBase;
 
-    AllFrames(){
+    public AllFrames(){
         createMainPage();
         dataBase = new DataBase("xeven");
     }
