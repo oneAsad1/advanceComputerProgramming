@@ -19,8 +19,9 @@ public class DataBase {
             System.out.println(exp.getMessage());
         }
     }
+
     Boolean createData(int regNumber, String Name) throws SQLException {
-        PreparedStatement pStat = conn.prepareStatement("INSERT INTO student VALUES (?, ?)");
+        PreparedStatement pStat = conn.prepareStatement("INSERT INTO student (Reg, Name) VALUES (?, ?)");
         pStat.setInt(1, regNumber);
         pStat.setString(2, Name);
         pStat.executeUpdate();

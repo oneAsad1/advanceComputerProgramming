@@ -53,18 +53,6 @@ class loginForm extends JFrame implements ActionListener {
         gbc.gridx = 0; gbc.gridy = 3; gbc.gridwidth = 2;
         panel.add(submitButton, gbc);
 
-        //Code under test
-        //------------------------------------------------
-        ImageIcon background = new ImageIcon("C:\\pexels.jpg");
-        Image img = background.getImage();
-        Image temp = img.getScaledInstance(500, 600, Image.SCALE_SMOOTH);
-        background = new ImageIcon(temp);
-        JLabel back = new JLabel(background);
-        back.setLayout(null);
-        back.setBounds(0,0,500,600);
-        //------------------------------------------------
-
-        add(back);
         add(panel, BorderLayout.CENTER);
         setVisible(true);
         setSize(300, 300);

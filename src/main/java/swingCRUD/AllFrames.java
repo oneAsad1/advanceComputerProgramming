@@ -10,6 +10,8 @@ import java.sql.SQLException;
 import static javax.swing.WindowConstants.EXIT_ON_CLOSE;
 
 public class AllFrames implements ActionListener {
+
+    // <editor-fold desc="Global Declaration">
     JLabel idLabel, nameLabel, desLabel;
     JTextField idField, nameField, desField;
     JButton submitButton;
@@ -17,12 +19,14 @@ public class AllFrames implements ActionListener {
     JFrame MainFrame, SecondFrame;
     JTable dataTable;
     DataBase dataBase;
+    // </editor-fold>
 
     public AllFrames(){
         createMainPage();
         dataBase = new DataBase("xeven");
     }
 
+    // <editor-fold desc="Creating Main page">
     void createMainPage() {
         idLabel = new JLabel("RegNumber");
         nameLabel = new JLabel("firstName");
@@ -81,7 +85,9 @@ public class AllFrames implements ActionListener {
         MainFrame.setSize(300, 300);
         MainFrame.setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
+    // </editor-fold>
 
+    // <editor-fold desc="Creating second page">
     void createSecondPage(DefaultTableModel model) {
         dataTable = new JTable(model);
         SecondFrame = new JFrame("View Data");
@@ -90,9 +96,12 @@ public class AllFrames implements ActionListener {
         SecondFrame.setSize(300, 300);
         SecondFrame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
     }
+    // </editor-fold>
 
     @Override
     public void actionPerformed(ActionEvent e) {
+
+        // <editor-fold desc="Getting Data from text fields">
         String operation = opsList.getItemAt(opsList.getSelectedIndex());
         String id = "", name = "";
         int regNo = 0;
@@ -102,6 +111,9 @@ public class AllFrames implements ActionListener {
             name = nameField.getText();
         }
         Boolean result;
+        // </editor-fold>
+
+        // <editor-fold desc="Create Mechanism">
         if (operation.equals("Create") && !id.isEmpty() && !name.isEmpty()) {
             try {
                 result = dataBase.createData(regNo, name);
@@ -111,6 +123,9 @@ public class AllFrames implements ActionListener {
                 JOptionPane.showMessageDialog(MainFrame, ex.getMessage(), "Warning", JOptionPane.WARNING_MESSAGE);
             }
         }
+        // </editor-fold>
+
+        // <editor-fold desc="Read Mechanism">
         else if (operation.equals("Read")) {
             try {
                 DefaultTableModel model = dataBase.readData();
@@ -119,6 +134,9 @@ public class AllFrames implements ActionListener {
                 JOptionPane.showMessageDialog(MainFrame, ex.getMessage(), "Warning", JOptionPane.WARNING_MESSAGE);
             }
         }
+        // </editor-fold>
+
+        // <editor-fold desc="Update Mechanism">
         else if (operation.equals("Update") && !id.isEmpty() && !name.isEmpty()) {
             try {
                 result = dataBase.updateData(regNo, name);
@@ -128,6 +146,9 @@ public class AllFrames implements ActionListener {
                 JOptionPane.showMessageDialog(MainFrame, ex.getMessage(), "Warning", JOptionPane.WARNING_MESSAGE);
             }
         }
+        // </editor-fold>
+
+        // <editor-fold desc="Delete Mechanism">
         else if (operation.equals("Delete") && !id.isEmpty()) {
             try {
                 result = dataBase.deleteData(regNo);
@@ -137,6 +158,8 @@ public class AllFrames implements ActionListener {
                 JOptionPane.showMessageDialog(MainFrame, ex.getMessage(), "Warning", JOptionPane.WARNING_MESSAGE);
             }
         }
+        // </editor-fold>
+
         else
             JOptionPane.showMessageDialog(MainFrame, "Error in credentials", "Warning", JOptionPane.WARNING_MESSAGE);
     }//end of actionPerformed()

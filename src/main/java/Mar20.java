@@ -93,8 +93,9 @@ class Card extends WindowAdapter implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == loginButton) {
             String username = usernameField.getText();
-            String password = Arrays.toString(passwordField.getPassword());
-
+            String password = String.valueOf(passwordField.getPassword());
+            System.out.println("username: " + username);
+            System.out.println("password: " + password);
             if (username.equals("admin") && password.equals("123")) {
                 usernameField.setText("");
                 passwordField.setText("");
